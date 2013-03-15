@@ -39,20 +39,23 @@ class TestPlugin(plugins.SingletonPlugin,
         # package types not handled by any other IDatasetForm plugin.
         return True
 
-    def form_to_db_schema(self):
-        log.warning("form_to_db_schema")
-
-        # get base dataset schema
-        schema = logic.schema.form_to_db_package_schema()
-
-        return schema
+    # def form_to_db_schema(self):
+    #     log.warning("form_to_db_schema")
+    # 
+    #     # get base dataset schema
+    #     schema = logic.schema.form_to_db_package_schema()
+    #     
+    #     return schema
 
     def db_to_form_schema(self):
-        log.warning("db_to_form_schema")
+        # log.warning("db_to_form_schema")
     
         # get base dataset schema
         schema = logic.schema.db_to_form_package_schema()
             
+        schema.update({
+            'isopen': [validators.ignore_missing],
+        })
+
         return schema
-    
     
